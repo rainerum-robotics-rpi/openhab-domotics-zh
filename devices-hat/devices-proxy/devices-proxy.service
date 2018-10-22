@@ -1,0 +1,9 @@
+[Unit]
+Description=IoT Devices Proxy
+After=mosquitto.service
+
+[Service]
+ExecStart=/usr/local/bin/devices-proxy
+
+[Install]
+WantedBy=default.target
