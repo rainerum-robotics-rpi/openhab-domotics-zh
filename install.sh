@@ -22,7 +22,22 @@ invoke_ohbc() {
 
 invoke_ohbc_mqtt() {
   invoke_ohbc
-  mqtt_setup
+  mqtt_setup #Invoke setup from OpenHAB
+}
+
+setup_ohb_mqtt_binding() {
+  local MqttConf="/etc/openhab2/services/mqtt.cfg"
+  local MqttBroker="rpidevicesproxy.url=tcp://localhost:1883"
+  if [[ -z "$ENV_OHBC" ]]; then
+    return #Fail silently
+  fi
+  if [ ! -f "$MqttConf" ]; then
+    echo "Found OpenHAB installation but not mqtt.cfg file. Did you install the MQTT Binding in OpenHAB?"
+    return
+  fi
+  if [ -z "$(cat $MqttConf | grep ^$MqttBroker)" ]; then
+    echo "$MqttBroker" >> "$MqttConf"
+  fi
 }
 
 install_mqtt() {
@@ -79,4 +94,5 @@ setup_gpio
 install_wiringpi
 install_mqtt
 install_proxy
+setup_ohb_mqtt_binding
 exit 0
