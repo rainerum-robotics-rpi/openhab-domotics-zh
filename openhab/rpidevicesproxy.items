@@ -1,0 +1,6 @@
+Switch RpiDevicesProxy_Stove_OnOff "Stove IR Remote: On/Off" <switch> {mqtt=">[rpidevicesproxy:cmd/ir/0:command:ON:IR_ON_OFF]"}
+Switch RpiDevicesProxy_Stove_HeatUp "Stove IR Remote: Heater +" <fire> {mqtt=">[rpidevicesproxy:cmd/ir/0:command:ON:IR_HEAT_UP]"}
+Switch RpiDevicesProxy_Stove_HeatDown "Stove IR Remote: Heater −" <fire> {mqtt=">[rpidevicesproxy:cmd/ir/0:command:ON:IR_HEAT_DOWN]"}
+Switch RpiDevicesProxy_Stove_TempUp "Stove IR Remote: Temperature +" <temperature> {mqtt=">[rpidevicesproxy:cmd/ir/0:command:ON:IR_TEMP_UP]"}
+Switch RpiDevicesProxy_Stove_TempDown "Stove IR Remote: Temperature −" <temperature> {mqtt=">[rpidevicesproxy:cmd/ir/0:command:ON:IR_TEMP_DOWN]"}
+String RpiDevicesProxy_Ambient_Test "Ambient: Temperature [%s]" <temperature> {mqtt="<[rpidevicesproxy:get/ambient/0:state:default]"}

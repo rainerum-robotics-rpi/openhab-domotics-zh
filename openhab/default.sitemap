@@ -1,0 +1,16 @@
+sitemap default label="RPi Home Automation" {
+  Frame label="Stove" {
+    Switch item=RpiDevicesProxy_Stove_OnOff label="IR Remote" mappings=[ON="On/Off"]
+  }
+  Frame {
+    Switch item=RpiDevicesProxy_Stove_HeatUp label="IR Remote" mappings=[ON="Heat. +"]
+    Switch item=RpiDevicesProxy_Stove_HeatDown label="IR Remote" mappings=[ON="Heat. −"]
+    Switch item=RpiDevicesProxy_Stove_TempUp label="IR Remote" mappings=[ON="Temp. +"]
+    Switch item=RpiDevicesProxy_Stove_TempDown label="IR Remote" mappings=[ON="Temp. −"]
+  }
+  Frame label="Ambient" {
+    Text item=RpiDevicesProxy_Ambient_Test
+    Image url="http://localhost:8080/static/cam-not-available.jpg" label="Camera" refresh=2000
+  }
+}
+
