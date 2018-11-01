@@ -21,7 +21,7 @@
 #define MQTT_QOS      1
 #define MQTT_TIMEOUT  10000L
 
-void publish(MQTTClient client, char* topic, char* payload) {
+static void publish(MQTTClient client, const char* topic, char* payload) {
   MQTTClient_message pubmsg = MQTTClient_message_initializer;
   pubmsg.payload = payload;
   pubmsg.payloadlen = strlen(pubmsg.payload);
@@ -30,10 +30,21 @@ void publish(MQTTClient client, char* topic, char* payload) {
   MQTTClient_deliveryToken token;
   MQTTClient_publishMessage(client, topic, &pubmsg, &token);
   MQTTClient_waitForCompletion(client, token, MQTT_TIMEOUT);
-  //printf("Message '%s' with delivery token %d delivered\n", payload, token);
 }
 
-static void handleMessage(char* topicName, char* payload);
+static void publish_sensor(MQTTClient client, const char* topic, float value) {
+  static char valBuf[8];
+  memset(valBuf, 0, sizeof(valBuf));
+  snprintf(valBuf, sizeof(valBuf), "%.1f", value);
+  //send measurement
+  publish(client, topic, valBuf);
+}
+
+static void handleMessage(char* topicName, char* payload) {
+  if(strcmp(topicName, "cmd/ir/0") == 0) {
+    irHandleCmd(payload);
+  }
+}
 
 int on_message(void *context, char *topicName, int topicLen, MQTTClient_message *message) {
   char* payload = message->payload;
@@ -71,14 +82,19 @@ int main(void) {
   MQTTClient_subscribe(client, "cmd/ir/0", 0);
 
   while(1) {
-    static char valBuf[32];
+    static char valBuf[80];
     float tempDegC = 0.0f;
     float tempRelHumPrcnt = 0.0f;
     dht11_refresh(&tempDegC, &tempRelHumPrcnt);
     if(!isnan(tempDegC) && !isnan(tempRelHumPrcnt)) {
       memset(valBuf, 0, sizeof(valBuf));
-      snprintf(valBuf, sizeof(valBuf), "%.1fDegC,%.1fRelHumPrcnt", tempDegC, tempRelHumPrcnt);
+      snprintf(valBuf, sizeof(valBuf),
+               "[{\"DHT11\":{\"Temp\":%.1f,\"RHum\":%.1f},\"TempUnit\":\"°C\",\"RHumUnit\":\"%%\"}]",
+               tempDegC, tempRelHumPrcnt);
       //send ambient measurement
+      publish_sensor(client, "get/ambient/0/temp", tempDegC);
+      publish_sensor(client, "get/ambient/0/rhum", tempRelHumPrcnt);
+
       publish(client, "get/ambient/0", valBuf);
     }
     delay(1000);
@@ -86,10 +102,4 @@ int main(void) {
   MQTTClient_disconnect(client, 1000);
   MQTTClient_destroy(&client);
   return rc;
-}
-
-static void handleMessage(char* topicName, char* payload) {
-  if(strcmp(topicName, "cmd/ir/0") == 0) {
-    irHandleCmd(payload);
-  }
 }
