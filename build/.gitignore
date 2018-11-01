@@ -1,0 +1,3 @@
+*.o
+devices-proxy
+devices-proxy-armhf/
