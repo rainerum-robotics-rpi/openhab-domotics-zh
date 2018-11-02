@@ -53,7 +53,7 @@ install_mqtt() {
 }
 
 install_proxy() {
-  local BuildDir="$( cd -P "$( dirname "$SOURCE" )" && pwd )/build"
+  local BuildDir="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/build"
   local BuildSrc="$BIN_PROXY-$ENV_ARCH"
   cd "$BuildDir"
   if [ ! -d "$BuildDir/$BuildSrc" ]; then
@@ -87,7 +87,7 @@ setup_gpio() {
 }
 
 setup_openhab_extras() {
-  local OhbExtrasDir="$( cd -P "$( dirname "$SOURCE" )" && pwd )/openhab"
+  local OhbExtrasDir="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/openhab"
   apt update
   apt -y install fswebcam
   cd "$OhbExtrasDir"
