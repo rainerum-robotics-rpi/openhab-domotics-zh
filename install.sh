@@ -3,7 +3,7 @@
 readonly ENV_ARCH=$(dpkg --print-architecture)
 readonly ENV_OHBC=$(which openhabian-config)
 readonly BIN_PROXY="devices-proxy"
-readonly LIB_PAHO="paho.mqtt.c"
+readonly LIB_PAHO="paho.mqtt.c-v1.3.0"
 
 invoke_ohbc() {
   # Find the absolute script location dir (e.g. BASEDIR=/opt/openhabian)
@@ -61,7 +61,7 @@ install_proxy() {
   if [ ! -d "$BuildDir/$BdLibSrc" ]; then
     mkdir "$BuildDir/$BdLibSrc"
   fi
-  tar -xzf "$BuildDir/$LIB_PAHO*.tar.gz" -C "$BuildDir/$BdLibSrc"
+  tar -xzf "$BuildDir/$BdLibSrc.tar.gz" -C "$BuildDir/$BdLibSrc"
   cd "$BuildDir/$BdLibSrc"
   make install
   cd "$BuildDir"
