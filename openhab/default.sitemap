@@ -11,7 +11,7 @@ sitemap default label="RPi Home Automation" {
   Frame label="Ambient" {
     Text item=RpiDevicesProxy_Ambient_Temp label="Temperature"
     Text item=RpiDevicesProxy_Ambient_RHum label="Humidity"
-    Image url="http://localhost:8080/static/cam-not-available.jpg" label="Camera" refresh=2000
+    Image url="http://localhost:8080/static/cam0.jpg" label="Camera" refresh=2000
   }
 }
 

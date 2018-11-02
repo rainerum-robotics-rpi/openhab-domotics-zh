@@ -1,0 +1,5 @@
+[Unit]
+Description=Run devices-proxy-cam.service every second
+
+[Timer]
+OnCalendar=*:*:0/1

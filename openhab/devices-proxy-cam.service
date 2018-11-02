@@ -1,0 +1,6 @@
+[Unit]
+Description=Image capture from /dev/video0
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/devices-proxy-cam.sh
