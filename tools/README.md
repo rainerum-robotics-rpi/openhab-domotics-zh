@@ -19,7 +19,9 @@ See also:
     2. `cd openhab-domotics-zh`
     3. `sudo ./install.sh`
     4. When you get asked for a MQTT password keep the *password empty* and proceed with *OK*
-7. Go back to the Web UI and select: TBD default UI
+7. Once the script has finished you can go back to the Web UI and select on the left pane the option *Configuration* and the subitem *Services*. Then select the heading *UI* and click on the *configure* button of the *Basic UI* item. Type in the field of *Default Sitemap* the text **default**. That is the given name of the basic UI installed by the previous script.
+8. Verify that the Basic UI is accessible via http://openhabianpi:8080/basicui/app
+9. Finally you can power off or restart the Raspberry Pi by using the SSH terminal.
 
 ## OpenHABian Image Preparation
 1. Shutdown the Raspberry Pi and put the SD card in to the card reader slot of your computer.
