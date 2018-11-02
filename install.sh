@@ -62,6 +62,7 @@ install_proxy() {
   tar -xzf "$BuildDir/$BuildSrc.tar.gz" -C "$BuildDir/$BuildSrc/"
   cd "$BuildDir/$BuildSrc"
   make install
+  cd "$BuildDir/.."
 }
 
 install_wiringpi() {
@@ -85,6 +86,15 @@ setup_gpio() {
   fi
 }
 
+setup_openhab_extras() {
+  local OhbExtrasDir="$( cd -P "$( dirname "$SOURCE" )" && pwd )/openhab"
+  apt update
+  apt -y install fswebcam
+  cd "$OhbExtrasDir"
+  make install
+  cd "$OhbExtrasDir/.."
+}
+
 if [[ $EUID -ne 0 ]]; then
   echo "This script must be run as root. Did you mean 'sudo ${BASH_SOURCE[0]}'?" 1>&2
   exit 1
@@ -95,4 +105,5 @@ install_wiringpi
 install_mqtt
 install_proxy
 setup_ohb_mqtt_binding
+setup_openhab_extras
 exit 0
