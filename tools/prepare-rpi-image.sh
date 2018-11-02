@@ -35,6 +35,10 @@ if [ ! -f pishrink.sh ]; then
   wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh
 fi
 
+if [ -z "`which parted`" ]; then
+  apt -y install parted
+fi
+
 bash pishrink.sh "$RPI_FILE_IN" "$RPI_FILE_OUT"
 sync
 
