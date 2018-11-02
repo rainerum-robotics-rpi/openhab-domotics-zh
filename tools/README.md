@@ -13,11 +13,13 @@ See also:
 2. Download and/or install [a suitable tool to read and write image files](https://thepihut.com/blogs/raspberry-pi-tutorials/17789160-backing-up-and-restoring-your-raspberry-pis-sd-card).
 3. Write the extracted image file to an SD card that is larger than the file size of the image. Wait until the process has finished and extract the SD card.
 4. Insert the SD card in to a Raspberry Pi and attach a Display. Start the Raspberry Pi and wait until it has finished booting (this may take up to 1/2 hour).
-5. Open a terminal window and SSH to the Raspberry Pi `ssh openhabian@openhabianpi` and execute following commands (choose the master branch the get the latest stable):
+5. Open the Web UI http://openhabianpi:8080/ and select on the *Initial Setup* page the *Standard* recommended setup item. It will take a few moments until the UI gets installed. Once you see the *PAPER UI* item you can proceed by clicking on it. Select on the left side the *Add-ons* tab and then select the *BINDINGS* heading. Search for *mqtt* and select to install the **MQTT Binding**.
+6. Open a terminal window and SSH to the Raspberry Pi `ssh openhabian@openhabianpi` and execute following commands (choose the master branch the get the latest stable):
     1. `git clone https://github.com/rainerum-robotics-rpi/openhab-domotics-zh.git`
     2. `cd openhab-domotics-zh`
     3. `sudo ./install.sh`
-6. TBD
+    4. When you get asked for a MQTT password keep the *password empty* and proceed with *OK*
+7. Go back to the Web UI and select: TBD default UI
 
 ## OpenHABian Image Preparation
 1. Shutdown the Raspberry Pi and put the SD card in to the card reader slot of your computer.
