@@ -4,7 +4,7 @@ OpenHAB Domotics with Raspberry Pi 3
 ## Installation
 
 ### SD Card Image
-Download the latest SD Card image from the release page and use a tool such as *Etcher* to flash your SD Card.
+Download the [latest SD Card image from the release page](releases/latest) and use a tool such as *Etcher* to flash your SD Card.
 
 See also:
  - [Installing operating system images](https://www.raspberrypi.org/documentation/installation/installing-images/README.md)
@@ -43,10 +43,21 @@ To enable the cloud service you will need SSH access to your Raspberry Pi to get
 
 See also:
  - [myopenHAB - Mobile Apps](https://www.myopenhab.org/)
+ - [openHAB Cloud Connector](https://www.openhab.org/addons/integrations/openhabcloud/)
 
-To enable the cloud service you have to obtain the credentials needed to register your device and bind it to a user account.
+To enable the cloud service you have to obtain the credentials needed to register your device and bind it to an user account.
+1. Open the Web UI in a browser with the URL http://openhabianpi:8080/ there you should see the **PAPER UI** item where you can proceed by clicking on it. On the laft pane select **Add-ons**  and then choose the heading **MISC**. Search for *openhab* and then there should show up the **openHAB Cloud Connector** item where you then click on the **INSTALL** button on the right side. Wait until it has finished installing.
+2. Proceed by clicking on the **Configuration** menu item on the left pane and then select the **Services** subitem. Under the heading of **IO** you should find **openHAB Cloud** item. Proceed by clicking on **CONFIGURE** button that opens a new panel. On the Panel you have to insert under **Base URL for the openHAB Cloud server** the URL https://myopenhab.org and then click on **SAVE**.
+3. Go to https://myopenhab.org/ where you can register your Raspberry Pi. As you can see besides the email address and a password of your choice you will need also the **UUID** and **Secret** key such that you can bind the Raspberry Pi to the cloud service. For that you will need SSH access (see also next section).
+4. Open with *SSH* a connection to your Raspberry Pi and obtain the credentials via:
+    1. `cat /var/lib/openhab2/uuid`
+    2. `cat /var/lib/openhab2/openhabcloud/secret`
+5. Copy and paste both values to the input fields of the myopenhab web page and complete the registration with your email address and password of your choice. Accept the terms and privacy checkbox and proceed by clicking *Register*. You should have got a new email sent to you where your address gets verified.
+6. THe last step is within the SSH terminal where you type `sudo reboot`. That will restart the Raspberry Pi and enable remote access trough *myopenhab*.
 
-TBD
+See also:
+
+[![](http://img.youtube.com/vi/joz5f4ejJVc/0.jpg)](http://www.youtube.com/watch?v=joz5f4ejJVc "Complete Guide Setup openHAB Cloud Connector and myopenhab.org (Setup Remote Access)")
 
 ### SSH Access
 The default hostname of your Raspberry Pi will be `openhabianpi`. Furthermore the default user for SSH access is `openhabian` with password `openhabian`.
@@ -58,6 +69,9 @@ Just in case that the hostname `openhabianpi` is not working you can try to repl
 See also:
  - [SSH (Secure Shell)](https://www.raspberrypi.org/documentation/remote-access/ssh/)
  - [Downloading Nmap](https://nmap.org/download.html)
+ - [openHABian Configuration Tool](https://www.openhab.org/docs/installation/openhabian.html#openhabian-configuration-tool)
+
+As you can immagine it is recommended to change the default password `openhabian` as soon as possible such that nobody except you can enter the Raspberry Pi. For that you can start a SSH connection where you then enter the command `sudo openhabian-config`.
 
 ### SD Card Backup
 Once you are happy with the current configuration it is recommended to backup the SD Card such that you do not loose important settings.
