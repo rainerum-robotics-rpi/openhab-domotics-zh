@@ -55,7 +55,7 @@ To enable the cloud service you have to obtain the credentials needed to registe
 5. Copy and paste both values to the input fields of the myopenhab web page and complete the registration with your email address and password of your choice. Accept the terms and privacy checkbox and proceed by clicking *Register*. You should have got a new email sent to you where your address gets verified.
 6. The last step is within the SSH terminal where you type `sudo reboot`. That will restart the Raspberry Pi and enable remote access through *myopenhab*.
 
-See also:
+See also: *Complete Guide Setup openHAB Cloud Connector and myopenhab.org (Setup Remote Access)*
 
 [![](http://img.youtube.com/vi/joz5f4ejJVc/0.jpg)](http://www.youtube.com/watch?v=joz5f4ejJVc "Complete Guide Setup openHAB Cloud Connector and myopenhab.org (Setup Remote Access)")
 
