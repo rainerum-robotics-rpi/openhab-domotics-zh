@@ -4,7 +4,7 @@ OpenHAB Domotics with Raspberry Pi 3
 ## Installation
 
 ### SD Card Image
-Download the [latest SD Card image from the release page](releases/latest) and use a tool such as *Etcher* to flash your SD Card.
+Download the [latest SD Card image from the release page](https://github.com/rainerum-robotics-rpi/openhab-domotics-zh/releases/latest) and use a tool such as *Etcher* to flash your SD Card.
 
 See also:
  - [Installing operating system images](https://www.raspberrypi.org/documentation/installation/installing-images/README.md)
