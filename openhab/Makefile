@@ -11,6 +11,7 @@ install:
 	install -m 644 devices-proxy-cam.service /usr/lib/systemd/system/
 	install -m 644 devices-proxy-cam.timer /usr/lib/systemd/system/
 	systemctl daemon-reload
+	systemctl enable devices-proxy-cam.timer
 	systemctl start devices-proxy-cam.timer
 
 uninstall:

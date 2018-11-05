@@ -2,4 +2,7 @@
 Description=Run devices-proxy-cam.service every second
 
 [Timer]
-OnCalendar=*:*:0/1
+OnCalendar=*:*:0/2
+
+[Install]
+WantedBy=timers.target
